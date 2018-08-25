@@ -63,4 +63,8 @@ public class UserRepository {
             }
         });
     }
+
+    public void deleteAllUser(){
+        mUserDao.deleteAll();
+    }
 }

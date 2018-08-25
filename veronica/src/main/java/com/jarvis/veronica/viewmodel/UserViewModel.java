@@ -29,4 +29,8 @@ public class UserViewModel extends AndroidViewModel {
         mRepository.insert(user);
         Log.d("TAG","inside insertUser"+ user.name + "=="+user.password );
     }
+
+    public void deleteAllUser(){
+        mRepository.deleteAllUser();
+    }
 }
