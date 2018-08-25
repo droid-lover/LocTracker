@@ -2,6 +2,7 @@ package com.jarvis.veronica.repository;
 
 import android.app.Application;
 import android.arch.lifecycle.LiveData;
+import android.os.AsyncTask;
 import android.util.Log;
 
 import com.jarvis.veronica.db.UserDB;
@@ -13,16 +14,18 @@ import java.util.List;
 import io.reactivex.Observable;
 import io.reactivex.ObservableEmitter;
 import io.reactivex.ObservableOnSubscribe;
+import io.reactivex.Observer;
 import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.observers.DisposableObserver;
 import io.reactivex.schedulers.Schedulers;
 
 public class UserRepository {
-    private UserDao mUserDao;
+    public UserDao mUserDao;
     private LiveData<List<User>> mUserList;
+    private UserDB db;
 
     public UserRepository(Application application) {
-        UserDB db = UserDB.getUserDatabase(application);
+        db = UserDB.getUserDatabase(application);
         mUserDao = db.getUserDao();
         mUserList = mUserDao.usersList();
     }
@@ -35,22 +38,22 @@ public class UserRepository {
         /*-- inserting a user object --*/
         getUserObservable(userObj).subscribeOn(Schedulers.io()).
                 subscribeWith(new DisposableObserver<User>() {
-            @Override
-            public void onNext(User user) {
-                Log.d("TAG", "in onNext" + user.name + "==" + user.password);
-                mUserDao.insertUser(user);
-            }
+                    @Override
+                    public void onNext(User user) {
+                        Log.d("TAG", "in onNext" + user.name + "==" + user.password);
+                        mUserDao.insertUser(user);
+                    }
 
-            @Override
-            public void onError(Throwable e) {
+                    @Override
+                    public void onError(Throwable e) {
 
-            }
+                    }
 
-            @Override
-            public void onComplete() {
+                    @Override
+                    public void onComplete() {
 
-            }
-        });
+                    }
+                });
 
     }
 
@@ -64,7 +67,23 @@ public class UserRepository {
         });
     }
 
-    public void deleteAllUser(){
-        mUserDao.deleteAll();
+    public void deleteAllUser() {
+        new deleteDBDataAsync(db).execute();
+
+    }
+
+    private static class deleteDBDataAsync extends AsyncTask<Void, Void, Void> {
+
+        private final UserDao mDao;
+
+        deleteDBDataAsync(UserDB db) {
+            mDao = db.getUserDao();
+        }
+
+        @Override
+        protected Void doInBackground(final Void... params) {
+            mDao.deleteAll();
+            return null;
+        }
     }
 }

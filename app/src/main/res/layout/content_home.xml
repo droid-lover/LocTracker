@@ -8,7 +8,7 @@
     android:weightSum="10"
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".views.HomeActivity"
-    tools:showIn="@layout/activity_main">
+    tools:showIn="@layout/activity_home">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -46,13 +46,31 @@
                 android:text="Show all users" />
         </LinearLayout>
 
-        <TextView
-            android:id="@+id/tv_delete_all_users"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_weight="1"
-            android:gravity="center"
-            android:text="Show all users" />
+            android:orientation="horizontal"
+            android:weightSum="1">
+
+            <TextView
+                android:id="@+id/tv_delete_all_users"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="Delete all users" />
+
+            <TextView
+                android:id="@+id/tv_logout"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_weight="0.5"
+                android:gravity="center"
+                android:text="Logout" />
+        </LinearLayout>
+
     </LinearLayout>
 
 </LinearLayout>

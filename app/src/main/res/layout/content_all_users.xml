@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".views.AllUsersActivity"
+    android:layout_marginTop="?attr/actionBarSize"
+    tools:showIn="@layout/activity_all_users">
+
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/rv_all_users"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+
+    <TextView
+        android:id="@+id/tv_no_users"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:fontFamily="cursive"
+        android:gravity="center"
+        android:padding="10dp"
+        android:text="@string/prompt_no_users"
+        android:textColor="@color/colorLightBlack"
+        android:textSize="16sp"
+        android:visibility="gone" />
+</LinearLayout>
