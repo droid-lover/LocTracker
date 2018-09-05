@@ -1,2 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.jarvis.veronica" />
+    package="com.jarvis.veronica">
+
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
+
+    <application>
+        <activity android:name=".location.LocationActivity">
+        </activity>
+
+        <service
+            android:name=".jobs.SyncJobScheduler"
+            android:exported="false">
+            <intent-filter>
+                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
+            </intent-filter>
+        </service>
+
+    </application>
+
+</manifest>

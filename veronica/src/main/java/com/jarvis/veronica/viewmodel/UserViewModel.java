@@ -9,6 +9,7 @@ import android.util.Log;
 import com.jarvis.veronica.repository.UserRepository;
 import com.jarvis.veronica.user.entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class UserViewModel extends AndroidViewModel {
@@ -28,6 +29,10 @@ public class UserViewModel extends AndroidViewModel {
     public void insertUser(User user){
         mRepository.insert(user);
         Log.d("TAG","inside insertUser"+ user.name + "=="+user.password );
+    }
+
+    public void updateUserAddress(String addressList,String name){
+        mRepository.updateUserLocations(addressList,name);
     }
 
     public void deleteAllUser(){

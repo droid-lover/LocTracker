@@ -8,8 +8,10 @@ import android.text.TextUtils;
 import android.widget.Button;
 import android.widget.EditText;
 
+import com.jarvis.loctracker.LocTracker;
 import com.jarvis.loctracker.R;
 import com.jarvis.loctracker.utils.Sharedpreferences;
+import com.jarvis.veronica.Veronica;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -54,6 +56,8 @@ public class LoginActivity extends AppCompatActivity {
 
     private void goToHomeActivity(String name, String password) {
         mSharedpreferences.setIsUserLoggedIn(true);
+        mSharedpreferences.setLoggedInUserName(name);
+        Veronica.userName=name;
         Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
         intent.putExtra("name", name);
         intent.putExtra("password", password);

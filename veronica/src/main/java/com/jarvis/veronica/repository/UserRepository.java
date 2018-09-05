@@ -9,6 +9,7 @@ import com.jarvis.veronica.db.UserDB;
 import com.jarvis.veronica.user.dao.UserDao;
 import com.jarvis.veronica.user.entity.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import io.reactivex.Observable;
@@ -57,6 +58,9 @@ public class UserRepository {
 
     }
 
+    public void updateUserLocations(String addressList,String name) {
+        mUserDao.updateAddressList(addressList,name);
+    }
 
     private Observable<User> getUserObservable(final User userObj) {
         return Observable.create(new ObservableOnSubscribe<User>() {
@@ -66,6 +70,7 @@ public class UserRepository {
             }
         });
     }
+
 
     public void deleteAllUser() {
         new deleteDBDataAsync(db).execute();

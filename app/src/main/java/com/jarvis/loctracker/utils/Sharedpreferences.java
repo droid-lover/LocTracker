@@ -28,6 +28,7 @@ public class Sharedpreferences {
     public static final String TAG_IEMI_NUMBER = "imeiNumber";
 
     private static final String IS_FIRST_TIME_LAUNCH = "IsFirstTimeLaunch";
+    private static final String USER_NAME = "user_name";
 
 
     public static final String LOGINSTATUS = "login_status";
@@ -54,8 +55,8 @@ public class Sharedpreferences {
 
 
     /*
-        *  Loggedin username
-        **/
+     *  Loggedin username
+     **/
     public Boolean getIsUserLoggedIn() {
         return pref.getBoolean(TAG_USER_LOGGED_IN, false);
     }
@@ -69,15 +70,18 @@ public class Sharedpreferences {
     }
 
 
-    public void setFirstTimeLaunch(boolean isFirstTime) {
-        editor.putBoolean(IS_FIRST_TIME_LAUNCH, isFirstTime);
+    public void setLoggedInUserName(String userName) {
+        editor.putString(USER_NAME, userName);
         editor.commit();
+    }
+
+    public String getLoggedInUserName() {
+        return pref.getString(USER_NAME, "");
     }
 
     public boolean isFirstTimeLaunch() {
         return pref.getBoolean(IS_FIRST_TIME_LAUNCH, true);
     }
-
 
 
     //LoginStatus

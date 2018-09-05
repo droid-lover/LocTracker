@@ -73,7 +73,7 @@ public class HomeActivity extends AppCompatActivity {
 
 
     private void saveData(String name, String password) {
-        User user = new User(name, password);
+        User user = new User(name, password,null);
         model.insertUser(user);
     }
 
@@ -83,7 +83,7 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onChanged(@Nullable List<User> users) {
                 for (int i = 0; i < users.size(); i++) {
-                    Log.d("TAG", "data" + users.get(i).name);
+                    Log.d("TAG", "data" + users.get(i).name+users.get(i).addressList);
                     usersList.add(users.get(i));
                 }
             }
